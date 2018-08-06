@@ -1,29 +1,36 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <Menu v-if="gameState === 'menu'" />
+    <Game v-if="gameState !== 'menu'" />
+    <Settings v-if="gameState === 'setup'" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import { Component, Vue } from "vue-property-decorator";
+import { State } from "vuex-class";
+import Game from "./components/Game.vue";
+import Menu from "./components/Menu.vue";
+import Settings from "./components/Settings.vue";
 
 @Component({
-  components: {
-    HelloWorld,
-  },
+  components: { Game, Menu, Settings },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  @State gameState!: boolean;
+}
 </script>
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 20px;
+  > * + * {
+    margin: 32px 0 0 0;
+  }
 }
 </style>
