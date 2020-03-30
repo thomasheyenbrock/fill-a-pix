@@ -6,8 +6,8 @@ import games from "./assets/games";
 Vue.use(Vuex);
 
 const areAllBlocksFilled = (blocks: Block[][]) => {
-  return blocks.every(row => {
-    return row.every(block => {
+  return blocks.every((row) => {
+    return row.every((block) => {
       return block.state !== null;
     });
   });
@@ -67,17 +67,19 @@ const makeUseOfReachedLimit = (
 ) => {
   let changedBlocks = 0;
   const nonEmptyBlocks = relevantBlocks.filter(
-    block => block.state === limitType,
+    (block) => block.state === limitType,
   );
   if (nonEmptyBlocks.length > limit) {
     throw new Error(
       `number of ${limitType} blocks exceeded limit for block at position (${row}, ${column})`,
     );
   } else if (nonEmptyBlocks.length === limit) {
-    relevantBlocks.filter(block => block.state === null).forEach(block => {
-      block.state = limitType === "filled" ? "empty" : "filled";
-      changedBlocks++;
-    });
+    relevantBlocks
+      .filter((block) => block.state === null)
+      .forEach((block) => {
+        block.state = limitType === "filled" ? "empty" : "filled";
+        changedBlocks++;
+      });
   }
   return changedBlocks;
 };
@@ -92,7 +94,7 @@ const findSolutionIteration = (blocks: Block[][], changedBlocks: number) => {
         rowIndex,
         columnIndex,
       );
-      if (relevantBlocks.every(block => block.state !== null)) return;
+      if (relevantBlocks.every((block) => block.state !== null)) return;
       const changedBlocksAdterFilledLimit = makeUseOfReachedLimit(
         relevantBlocks,
         rowIndex,
@@ -136,7 +138,7 @@ export default new Vuex.Store<State>({
   state: initialState,
   mutations: {
     playPredefinedGame(state, name: string) {
-      const game = games.find(game => game.name === name);
+      const game = games.find((game) => game.name === name);
       if (!game) return;
       state.blocks = JSON.parse(JSON.stringify(game.blocks));
       state.height = game.height;
@@ -158,7 +160,7 @@ export default new Vuex.Store<State>({
     },
     setDimensions(state, { height, width }: { height: number; width: number }) {
       if (width > state.width) {
-        state.blocks = state.blocks.map(row =>
+        state.blocks = state.blocks.map((row) =>
           row.concat(
             Array.from({ length: width - state.width }).map(() => ({
               number: null,
@@ -168,7 +170,7 @@ export default new Vuex.Store<State>({
         );
       }
       if (width < state.width) {
-        state.blocks.forEach(row => row.splice(width, state.width - width));
+        state.blocks.forEach((row) => row.splice(width, state.width - width));
       }
       state.width = width;
 
