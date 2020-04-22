@@ -24,7 +24,7 @@
     "@vue/test-utils": "^1.0.0-beta.33",
     "babel-core": "7.0.0-bridge.0",
     "node-sass": "^4.13.1",
-    "prettier": "^2.0.4",
+    "prettier": "^2.0.5",
     "sass-loader": "^8.0.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.3.0",
