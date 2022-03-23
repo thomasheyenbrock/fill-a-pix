@@ -8,7 +8,10 @@
       <p>Play one of our predefined games:</p>
       <ul>
         <li v-for="game in games" :key="game.name">
-          <a href="#" v-on:click="play(game.name)">{{ game.name.toUpperCase() }} ({{ game.height }} &times; {{ game.width }} - Grid)</a>
+          <a href="#" v-on:click="play(game.name)"
+            >{{ game.name.toUpperCase() }} ({{ game.height }} &times;
+            {{ game.width }} - Grid)</a
+          >
         </li>
       </ul>
     </div>
