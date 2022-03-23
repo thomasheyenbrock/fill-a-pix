@@ -1,15 +1,15 @@
 <template>
   <div>
-    <hr/>
+    <hr />
     <div>
       Define the height of the grid:
-      <input type="number" :value="height" @input="updateHeight">
+      <input type="number" :value="height" @input="updateHeight" />
     </div>
     <div>
       Define the width of the grid:
-      <input type="number" :value="width" @input="updateWidth">
+      <input type="number" :value="width" @input="updateWidth" />
     </div>
-    <hr/>
+    <hr />
     <button v-on:click="startGame">Start game</button>
   </div>
 </template>
@@ -20,7 +20,7 @@ import { Mutation, State } from "vuex-class";
 import store from "../store";
 
 @Component({
-  store
+  store,
 })
 export default class Settings extends Vue {
   @State height!: number;
